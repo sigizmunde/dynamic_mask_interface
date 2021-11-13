@@ -1,0 +1,21 @@
+body {
+  font-family: "Benton Sans", "Helvetica Neue", helvetica, arial, sans-serif;
+  margin: 0em; 
+  background-color: #ffeb3b;
+}
+
+img {
+  /* max-width: 100%; */
+  display: block;
+}
+
+ .container image {
+  object-fit: fill;
+  -webkit-mask-image: url(#mask);
+  mask-image: url(#mask);
+} 
+
+ .container {
+  height: 100%;
+  width: 100%;
+} 

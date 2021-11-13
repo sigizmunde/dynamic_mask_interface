@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Hello!</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="example1.css">
+</head>
+
+<body>
+  <div class="container">
+    <svg width="100%" height="100%" id="svg_svg">
+      <defs>
+        <mask id="mask">
+          <!-- <rect fill="#000000" x="0" y="0" width="100" height="100"></rect> -->
+          <circle fill="#FFFFFF" cx="150" cy="150" r="100" id="cMask">
+          <!--circle fill="#FFFFFF" cx="50" cy="50" r="150" /-->
+        </mask>
+      </defs>
+      <image mask="url(#mask)" href="balloons.jpg" id="img_plate"></image>
+    </svg>
+    
+
+  </div>
+<script>
+
+let x = 0;
+let y = 0;
+let r = 100;
+
+var mySvg, myMask, myImg, myDiv;
+
+window.onload = () => {
+  myDiv = document.getElementsByClassName('container')[0];
+  mySvg = document.getElementById('svg_svg');
+  myImg = document.getElementById('img_plate');
+  myMask = document.getElementById('cMask');
+  myImg.addEventListener('mousemove', mouseMoveFunc);
+  windowResizeFunc();
+}
+
+window.onresize = windowResizeFunc;
+
+function windowResizeFunc(){
+  const width  = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+  const height = window.innerHeight|| document.documentElement.clientHeight|| document.body.clientHeight;
+  console.log(width, height);
+  myDiv.style.width=width+'px';   //aaa! here it is! pixels!
+  myDiv.style.height=height+'px';
+  myImg.style.width=document.body.clientWidth+'px';
+  myImg.style.height=document.body.clientHeight+'px';
+
+  let w=myImg.style.width.substring(0,myImg.style.width.length-2); //truncating 'px'
+  let h=myImg.style.height.substring(0,myImg.style.height.length-2); 
+  myMask.style.r=Math.max(25,Math.min(w,h)/5);
+  console.log(w,h);
+}
+
+function mouseMoveFunc(e){
+  x=e.offsetX;
+  y=e.offsetY;
+  myMask.style.cx=x;
+  myMask.style.cy=y;
+}
+
+</script>
+</body>
+
+</html>
